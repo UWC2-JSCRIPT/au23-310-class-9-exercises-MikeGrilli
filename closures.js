@@ -22,13 +22,31 @@ console.log(counter.getCount());
 // - addMessage method that adds a message to the array
 // - getMessage(index) method that returns the message at index index
 
-// const createMessageHolder = () => {};
+const createMessageHolder = () => {
+  const messages = []
+
+  return {
+    
+    addMessage: (message) => {
+      messages.push(message)
+    },
+    
+    getMessage: (index) => {
+      if(index >= 0 && index < messages.length) {
+        return messages[index]
+      } else {
+        return 'No messages at that index'
+      }
+    }
+    
+  }
+};
 
 // // Test
-// const messageHolder = createMessageHolder();
-// messageHolder.addMessage('Hello!');
-// messageHolder.addMessage('Goodbye!');
-// console.log(messageHolder.getMessage(0));
+const messageHolder = createMessageHolder();
+messageHolder.addMessage('Hello!');
+messageHolder.addMessage('Goodbye!');
+console.log(messageHolder.getMessage(1));
 // // "Hello!""
 
 // // Example: non-currying
@@ -58,10 +76,17 @@ console.log(counter.getCount());
 // - This accepts a single argument, name (i.e. "Matt")
 // - This function should return the greeting combined with the name, (i.e. "Hello Matt")
 // const createGreeting = function(greeting) {};
+const createGreeting = (greeting) => {
+  return (name) => {
+    return `${greeting}, ${name}`
+  }
+}
 
+const greet = createGreeting('Yo whats up')
+console.log(greet('Dennis'))
 // // Test
-// const welcomeGreet = createGreeting('Welcome');
-// console.log(welcomeGreet('Alice'));
+const welcomeGreet = createGreeting('Welcome');
+console.log(welcomeGreet('Alice'));
 
-// const helloGreet = createGreeting('Hello');
-// console.log(helloGreet('Winnie'));
+const helloGreet = createGreeting('Hello');
+console.log(helloGreet('Winnie'));
